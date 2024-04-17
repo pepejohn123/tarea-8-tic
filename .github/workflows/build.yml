@@ -1,0 +1,19 @@
+name: Build and Run SQL Docker Image
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-sql-image:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build SQL Docker Image
+        run: docker build -t my-sql-image .
+
+      - name: Run SQL Docker Container
+        run: docker run -d --name my-sql-container my-sql-image
